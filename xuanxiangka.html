@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+    	.btn{
+      		 background: red;
+      		 color: #fff;
+    		 }
+     	.box div{
+     	  	width: 200px;
+      		height: 200px;
+     	  	border: solid 1px #000;
+      		display: none;
+     	}
+   	</style>
+ </head>
+ <body>
+   <!-- 选项卡 -->
+   <div id="box" class="box">
+     <input type="button" value="选项卡1" class="btn">
+     <input type="button" value="选项卡2">
+    <input type="button" value="选项卡3">
+     <div style="display:block;">内容一</div>
+     <div>内容二</div>
+     <div>内容三</div>
+   </div>
+   <!-- 定时选项卡 -->
+   <div id="box2" class="box">
+     <input type="button" value="选项卡1" class="btn">
+     <input type="button" value="选项卡2">
+     <input type="button" value="选项卡3">
+     <div style="display:block;">1111</div>
+     <div>2222</div>
+     <div>3333</div>
+   </div>
+   <!-- 点击切换-->
+   <div id="box3" class="box">
+   	<button class="but">←</button> <button class="but">→</button>
+   	<br />
+     <input type="button" value="选项卡1" class="btn">
+     <input type="button" value="选项卡2">
+     <input type="button" value="选项卡3">
+     <div style="display:block;">1111</div>
+     <div>2222</div>
+     <div>3333</div>
+   </div>
+   <script type="text/javascript">
+     //选项卡
+       class Tab{  //类
+         constructor(id){  //constructor在new出来一个实例时就自动执行
+           this.oBox=document.getElementById(id);
+           this.aBtn=this.oBox.getElementsByTagName('input');
+           this.aDiv=this.oBox.getElementsByTagName('div');
+          this.iNow=0;
+           this.init();
+         }
+        init(){    //为对象添加方法
+         for (let i = 0; i < this.aBtn.length; i++) {
+             this.aBtn[i].onclick=function(){
+               this.hide();    //先循环让所有的都隐藏
+               this.show(i);    //再让选择的第i个显示出来
+             }.bind(this);    //bind(this)进行校正this的值
+           }
+         }
+         hide(){
+           for (let i = 0; i < this.aBtn.length; i++) {
+             this.aBtn[i].className='';
